@@ -31,5 +31,10 @@
 
     <string name="toast_stock_added_no_connectivity">Symbol %s added. Will refresh when network available.</string>
     <string name="toast_no_connectivity">Will refresh when network available.</string>
+    <string name="title_activity_detail">Detail activity</string>
+
+    <string name="content_description_fab">Add a stock to the list</string>
+    <string name="content_description_stock_edittext">Symbol of stock to add</string>
+    <string name="activity_detail_plot_title">A simple plot</string>
 
 </resources>

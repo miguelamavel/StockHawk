@@ -81,6 +81,8 @@ public final class QuoteSyncJob {
 
                 // WARNING! Don't request historical data for a stock that doesn't exist!
                 // The request will hang forever X_x
+                //TODO: get graph over time from yahoo?
+                //TODO: Don't request historical data for a stock that doesn't exist
                 List<HistoricalQuote> history = stock.getHistory(from, to, Interval.WEEKLY);
 
                 StringBuilder historyBuilder = new StringBuilder();
@@ -115,6 +117,7 @@ public final class QuoteSyncJob {
 
         } catch (IOException exception) {
             Timber.e(exception, "Error fetching stock quotes");
+            exception.printStackTrace();
         }
     }
 
