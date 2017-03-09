@@ -36,5 +36,8 @@
     <string name="content_description_fab">Add a stock to the list</string>
     <string name="content_description_stock_edittext">Symbol of stock to add</string>
     <string name="activity_detail_plot_title">A simple plot</string>
+    <string name="detail_current_price">Current price</string>
+    <string name="detail_abs_change">Absolute change</string>
+    <string name="detail_percentage_change">Percentage change</string>
 
 </resources>

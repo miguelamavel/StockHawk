@@ -25,6 +25,25 @@
         <item name="android:textSize">30sp</item>
         <item name="android:textAllCaps">true</item>
     </style>
+
+    <style name="DetailText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/activity_detail_text_size</item>
+        <item name="android:layout_marginStart">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/activity_horizontal_margin</item>
+    </style>
+
+    <style name="DetailText.Start">
+        <item name="android:layout_marginTop">@dimen/activity_vertical_skip</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="DetailText.End">
+        <item name="android:textAlignment">textEnd</item>
+    </style>
+
+
     <style name="PlotStyle">
         <item name="titleTextSize">20sp</item>
         <item name="rangeTitleTextSize">13sp</item>
@@ -83,4 +102,6 @@
         <item name="rangeTitleTextColor">@color/ap_white</item>
         <item name="legendTextColor">@color/ap_white</item>
     </style>
+
+    <dimen name="activity_detail_text_size">20dp</dimen>
 </resources>

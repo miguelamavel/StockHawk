@@ -20,8 +20,10 @@ import com.androidplot.xy.XYSeries;
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
 
+import java.text.DecimalFormat;
 import java.text.FieldPosition;
 import java.text.Format;
+import java.text.NumberFormat;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,11 +56,15 @@ public class DetailActivity extends AppCompatActivity implements
     private static final int NUMBER_Y_LABELS = 5;
 
     private Uri mUri;
+    private DecimalFormat mDollarFormatWithPlus;
+    private DecimalFormat mPercentageFormat;
 
-    @BindView(R.id.activity_detail_title)
-    TextView mTitleTextView;
-    @BindView(R.id.activity_detail_price)
+    @BindView(R.id.activity_detail_current_price)
     TextView mPriceTextView;
+    @BindView(R.id.activity_detail_abs_change)
+    TextView mAbsChangeTextView;
+    @BindView(R.id.activity_detail_percentage_change)
+    TextView mPercentageChangeTextView;
 
     @BindView(R.id.activity_detail_plot)
     XYPlot mHistoryPlot;
@@ -69,6 +75,13 @@ public class DetailActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_detail);
 
         ButterKnife.bind(this);
+
+        mDollarFormatWithPlus = (DecimalFormat) NumberFormat.getCurrencyInstance(Locale.US);
+        mDollarFormatWithPlus.setPositivePrefix("+$");
+        mPercentageFormat = (DecimalFormat) NumberFormat.getPercentInstance(Locale.getDefault());
+        mPercentageFormat.setMaximumFractionDigits(2);
+        mPercentageFormat.setMinimumFractionDigits(2);
+        mPercentageFormat.setPositivePrefix("+");
 
         mUri = getIntent().getData();
         if (mUri == null) throw new NullPointerException("URI for DetailActivity cannot be null");
@@ -108,10 +121,13 @@ public class DetailActivity extends AppCompatActivity implements
         }
 
         String symbol = data.getString(INDEX_SYMBOL);
-        mTitleTextView.setText(symbol);
 
-        String price = String.valueOf(data.getDouble(INDEX_PRICE));
-        mPriceTextView.setText(price);
+        if (getSupportActionBar()!=null)
+            getSupportActionBar().setTitle(symbol);
+
+        mPriceTextView.setText(String.format(Locale.US, "%.2f", data.getDouble(INDEX_PRICE)));
+        mAbsChangeTextView.setText(mDollarFormatWithPlus.format(data.getDouble(INDEX_ABSOLUTE_CHANGE)));
+        mPercentageChangeTextView.setText(mPercentageFormat.format(data.getDouble(INDEX_PERCENTAGE_CHANGE)/100));
 
         String history = data.getString(INDEX_HISTORY);
         String[] values = history.split("\n");
