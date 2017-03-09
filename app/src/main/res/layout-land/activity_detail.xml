@@ -12,56 +12,71 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.udacity.stockhawk.ui.DetailActivity">
 
+    <android.support.constraint.Guideline
+        android:id="@+id/vertical_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.66"/>
+
     <!-- Plot history rui ricardo poster suica -->
     <com.androidplot.xy.XYPlot
         android:id="@+id/activity_detail_plot"
         style="@style/PlotStyle.Dark"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/price_plot_height"
+        android:layout_width="@dimen/price_plot_width"
+        android:layout_height="match_parent"
         app:title="@string/activity_detail_plot_title"
         app:rangeTitle="range"
         app:domainTitle="domain"
         app:lineLabels="left|bottom"
         app:lineLabelRotationBottom="-45"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/vertical_guideline"
         android:layout_marginTop="@dimen/activity_vertical_skip"/>
 
     <TextView
         android:id="@+id/activity_detail_current_price_title"
-        style="@style/DetailText.Start"
-        app:layout_constraintTop_toBottomOf="@id/activity_detail_plot"
-        app:layout_constraintStart_toStartOf="parent"
+        style="@style/DetailText.Top"
+        app:layout_constraintTop_toTopOf="@id/activity_detail_plot"
+        app:layout_constraintStart_toEndOf="@id/vertical_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/detail_current_price"/>
     <TextView
         android:id="@+id/activity_detail_current_price"
-        style="@style/DetailText.End"
-        app:layout_constraintTop_toTopOf="@id/activity_detail_current_price_title"
+        style="@style/DetailText.Bottom"
+        app:layout_constraintTop_toBottomOf="@id/activity_detail_current_price_title"
+        app:layout_constraintStart_toEndOf="@id/vertical_guideline"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="49.999"/>
 
     <TextView
         android:id="@+id/activity_detail_abs_change_title"
-        style="@style/DetailText.Start"
-        app:layout_constraintTop_toBottomOf="@id/activity_detail_current_price_title"
-        app:layout_constraintStart_toStartOf="parent"
+        style="@style/DetailText.Top"
+        app:layout_constraintTop_toBottomOf="@id/activity_detail_current_price"
+        app:layout_constraintStart_toEndOf="@id/vertical_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/detail_abs_change"/>
     <TextView
         android:id="@+id/activity_detail_abs_change"
-        style="@style/DetailText.End"
-        app:layout_constraintTop_toTopOf="@id/activity_detail_abs_change_title"
+        style="@style/DetailText.Bottom"
+        app:layout_constraintTop_toBottomOf="@id/activity_detail_abs_change_title"
+        app:layout_constraintStart_toEndOf="@id/vertical_guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="0.34"/>
+        tools:text="+$0.34"/>
 
     <TextView
         android:id="@+id/activity_detail_percentage_change_title"
-        style="@style/DetailText.Start"
-        app:layout_constraintTop_toBottomOf="@id/activity_detail_abs_change_title"
-        app:layout_constraintStart_toStartOf="parent"
+        style="@style/DetailText.Top"
+        app:layout_constraintTop_toBottomOf="@id/activity_detail_abs_change"
+        app:layout_constraintStart_toStartOf="@id/vertical_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/detail_percentage_change"/>
     <TextView
         android:id="@+id/activity_detail_percentage_change"
-        style="@style/DetailText.End"
-        app:layout_constraintTop_toTopOf="@id/activity_detail_percentage_change_title"
+        style="@style/DetailText.Bottom"
+        app:layout_constraintTop_toBottomOf="@id/activity_detail_percentage_change_title"
+        app:layout_constraintStart_toEndOf="@id/vertical_guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="1.54"/>
+        tools:text="+1.54%"/>
 </android.support.constraint.ConstraintLayout>

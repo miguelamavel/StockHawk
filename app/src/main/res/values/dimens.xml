@@ -3,4 +3,5 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="activity_vertical_skip">8dp</dimen>
     <dimen name="price_plot_height">200dp</dimen>
+    <dimen name="price_plot_width">400dp</dimen>
 </resources>
