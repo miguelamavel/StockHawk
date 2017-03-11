@@ -39,5 +39,7 @@
     <string name="detail_current_price">Current price</string>
     <string name="detail_abs_change">Absolute change</string>
     <string name="detail_percentage_change">Percentage change</string>
+    <string name="empty_stock_list">No stock information available</string>
+    <string name="title_widget_detail">Stock Details</string>
 
 </resources>

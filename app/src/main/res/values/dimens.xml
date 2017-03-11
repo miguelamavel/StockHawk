@@ -4,4 +4,10 @@
     <dimen name="activity_vertical_skip">8dp</dimen>
     <dimen name="price_plot_height">200dp</dimen>
     <dimen name="price_plot_width">400dp</dimen>
+    <dimen name="widget_margin">8dp</dimen>
+
+    <dimen name="widget_detail_default_height">180dp</dimen>
+    <dimen name="widget_detail_default_width">250dp</dimen>
+    <dimen name="widget_detail_min_resize_width">220dp</dimen>
+    <dimen name="widget_detail_min_resize_height">@dimen/widget_detail_default_height</dimen>
 </resources>

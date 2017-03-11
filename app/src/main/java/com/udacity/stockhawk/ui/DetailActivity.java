@@ -175,8 +175,6 @@ public class DetailActivity extends AppCompatActivity implements
                 return null;
             }
         });
-
-        //TODO: bind stuff
     }
 
     @Override
