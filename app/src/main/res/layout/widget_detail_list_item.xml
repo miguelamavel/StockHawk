@@ -4,7 +4,7 @@
              android:id="@+id/widget_list_item"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:background="@drawable/touch_selector_white">
+             android:background="@drawable/touch_selector">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
 
         <TextView
             android:id="@+id/widget_symbol"
-            style="@style/StockSymbolTextStyle"
+            style="@style/StockSymbolTextStyle.Widget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start|center_vertical"
@@ -27,11 +27,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:orientation="horizontal"
             android:gravity="end">
 
             <TextView
                 android:id="@+id/widget_price"
-                style="@style/BidPriceTextStyle"
+                style="@style/BidPriceTextStyle.Widget"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10sp"
@@ -39,7 +40,7 @@
 
             <TextView
                 android:id="@+id/widget_change"
-                style="@style/PercentChangeTextStyle"
+                style="@style/PercentChangeTextStyle.Widget"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/percent_change_pill_green"

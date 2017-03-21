@@ -17,6 +17,8 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import timber.log.Timber;
+
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class DetailWidgetRemoteViewsService extends RemoteViewsService {
     private static final String[] STOCK_COLUMNS = {
@@ -104,11 +106,12 @@ public class DetailWidgetRemoteViewsService extends RemoteViewsService {
                 String change = dollarFormatWithPlus.format(rawAbsoluteChange);
                 String percentage = percentageFormat.format(percentageChange / 100);
 
+                Timber.i("change " + change + " " + percentage);
                 if (PrefUtils.getDisplayMode(DetailWidgetRemoteViewsService.this)
                         .equals(DetailWidgetRemoteViewsService.this.getString(R.string.pref_display_mode_absolute_key))) {
-                    views.setTextViewText(R.id.change, change);
+                    views.setTextViewText(R.id.widget_change, change);
                 } else {
-                    views.setTextViewText(R.id.change, percentage);
+                    views.setTextViewText(R.id.widget_change, percentage);
                 }
 
                 final Intent fillInIntent = new Intent();
