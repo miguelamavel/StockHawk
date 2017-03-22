@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="com.udacity.stockhawk.ui.DetailActivity">
 
     <!-- Plot history rui ricardo poster suica -->
@@ -17,51 +14,74 @@
         android:id="@+id/activity_detail_plot"
         style="@style/PlotStyle.Dark"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/price_plot_height"
+        android:layout_height="0dp"
+        android:layout_weight="3"
         app:title="@string/activity_detail_plot_title"
         app:rangeTitle="range"
         app:domainTitle="domain"
         app:lineLabels="left|bottom"
         app:lineLabelRotationBottom="-45"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/activity_vertical_skip"/>
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
 
-    <TextView
-        android:id="@+id/activity_detail_current_price_title"
-        style="@style/DetailText.Start"
-        app:layout_constraintTop_toBottomOf="@id/activity_detail_plot"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="@string/detail_current_price"/>
-    <TextView
-        android:id="@+id/activity_detail_current_price"
-        style="@style/DetailText.End"
-        app:layout_constraintTop_toTopOf="@id/activity_detail_current_price_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="49.999"/>
+    <android.support.v7.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="@color/detail_accent_pane_background"
+        android:paddingBottom="@dimen/activity_vertical_padding"
+        android:paddingTop="@dimen/activity_vertical_padding"
+        android:paddingLeft="@dimen/activity_horizontal_padding"
+        android:paddingStart="@dimen/activity_horizontal_padding"
+        android:paddingRight="@dimen/activity_horizontal_padding"
+        android:paddingEnd="@dimen/activity_horizontal_padding"
+        app:columnCount="2">
 
-    <TextView
-        android:id="@+id/activity_detail_abs_change_title"
-        style="@style/DetailText.Start"
-        app:layout_constraintTop_toBottomOf="@id/activity_detail_current_price_title"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="@string/detail_abs_change"/>
-    <TextView
-        android:id="@+id/activity_detail_abs_change"
-        style="@style/DetailText.End"
-        app:layout_constraintTop_toTopOf="@id/activity_detail_abs_change_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="0.34"/>
+        <TextView
+            android:id="@+id/activity_detail_current_price_title"
+            style="@style/DetailText.Start"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_rowWeight="1"
+            android:text="@string/detail_current_price"/>
+        <TextView
+            android:id="@+id/activity_detail_current_price"
+            style="@style/DetailText.End"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            app:layout_gravity="fill"
+            tools:text="49.999"/>
 
-    <TextView
-        android:id="@+id/activity_detail_percentage_change_title"
-        style="@style/DetailText.Start"
-        app:layout_constraintTop_toBottomOf="@id/activity_detail_abs_change_title"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="@string/detail_percentage_change"/>
-    <TextView
-        android:id="@+id/activity_detail_percentage_change"
-        style="@style/DetailText.End"
-        app:layout_constraintTop_toTopOf="@id/activity_detail_percentage_change_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="1.54"/>
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/activity_detail_abs_change_title"
+            style="@style/DetailText.Start"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            app:layout_gravity="fill"
+            app:layout_rowWeight="1"
+            android:text="@string/detail_abs_change"/>
+        <TextView
+            android:id="@+id/activity_detail_abs_change"
+            style="@style/DetailText.End"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            app:layout_gravity="fill"
+            tools:text="0.34"/>
+
+        <TextView
+            android:id="@+id/activity_detail_percentage_change_title"
+            style="@style/DetailText.Start"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            app:layout_gravity="fill"
+            app:layout_rowWeight="1"
+            android:text="@string/detail_percentage_change"/>
+        <TextView
+            android:id="@+id/activity_detail_percentage_change"
+            style="@style/DetailText.End"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            app:layout_gravity="fill"
+            tools:text="1.54"/>
+    </android.support.v7.widget.GridLayout>
+</LinearLayout>
