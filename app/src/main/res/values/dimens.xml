@@ -10,4 +10,11 @@
     <dimen name="widget_detail_default_width">250dp</dimen>
     <dimen name="widget_detail_min_resize_width">220dp</dimen>
     <dimen name="widget_detail_min_resize_height">@dimen/widget_detail_default_height</dimen>
+    <dimen name="edit_text_margin">4dp</dimen>
+    <dimen name="edit_text_top_margin">16dp</dimen>
+    <dimen name="fab_elevation">6dp</dimen>
+    <dimen name="fab_pressed_translation_z">12dp</dimen>
+    <dimen name="list_item_padding">16dp</dimen>
+    <dimen name="change_padding">3dp</dimen>
+    <dimen name="price_margin_end">10sp</dimen>
 </resources>

@@ -34,9 +34,9 @@
         android:contentDescription="@string/content_description_fab"
         app:backgroundTint="@color/material_blue_500"
         app:borderWidth="0dp"
-        app:elevation="6dp"
+        app:elevation="@dimen/fab_elevation"
         app:fabSize="normal"
-        app:pressedTranslationZ="12dp" />
+        app:pressedTranslationZ="@dimen/fab_pressed_translation_z" />
 
     <TextView
         android:id="@+id/error"

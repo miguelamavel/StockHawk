@@ -13,4 +13,9 @@
     <color name="activated">#606060</color>
     <color name="white">#FFFFFF</color>
 
+
+    <!-- our detail accent colors -->
+    <color name="detail_accent_pane_background">#CFD8DC</color>
+    <color name="detail_accent_label">#455A64</color>
+
 </resources>
