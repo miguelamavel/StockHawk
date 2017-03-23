@@ -41,5 +41,6 @@
     <string name="detail_percentage_change">Percentage change</string>
     <string name="empty_stock_list">No stock information available</string>
     <string name="title_widget_detail">Stock Details</string>
+    <string name="error_no_symbol">The added symbol does not exist</string>
 
 </resources>

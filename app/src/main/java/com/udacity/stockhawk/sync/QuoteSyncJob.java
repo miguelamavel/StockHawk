@@ -75,13 +75,15 @@ public final class QuoteSyncJob {
                 Stock stock = quotes.get(symbol);
                 StockQuote quote = stock.getQuote();
 
+                if (quote.getPrice() == null) {
+                    PrefUtils.removeStock(context, symbol);
+                    continue;
+                }
+
                 float price = quote.getPrice().floatValue();
                 float change = quote.getChange().floatValue();
                 float percentChange = quote.getChangeInPercent().floatValue();
 
-                // WARNING! Don't request historical data for a stock that doesn't exist!
-                // The request will hang forever X_x
-                //TODO: Don't request historical data for a stock that doesn't exist
                 List<HistoricalQuote> history = stock.getHistory(from, to, Interval.WEEKLY);
 
                 StringBuilder historyBuilder = new StringBuilder();
@@ -176,6 +178,4 @@ public final class QuoteSyncJob {
 
         }
     }
-
-
 }

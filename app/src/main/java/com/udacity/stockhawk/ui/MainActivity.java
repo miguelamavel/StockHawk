@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     TextView error;
     private StockAdapter adapter;
 
+    private String addedSymbol = null;
+
     @Override
     public void onClick(String symbol) {
         Intent stockDetailIntent = new Intent(MainActivity.this, DetailActivity.class);
@@ -130,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 Toast.makeText(this, message, Toast.LENGTH_LONG).show();
             }
 
+            addedSymbol = symbol;
             PrefUtils.addStock(this, symbol);
             QuoteSyncJob.syncImmediately(this);
         }
@@ -147,6 +150,19 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         swipeRefreshLayout.setRefreshing(false);
 
+        if (addedSymbol!=null) {
+            boolean symbolRemoved = true;
+            while(data.moveToNext()) {
+                if (addedSymbol.equals(data.getString(Contract.Quote.POSITION_SYMBOL))) {
+                    symbolRemoved = false;
+                    break;
+                }
+            }
+            if (symbolRemoved)
+                Toast.makeText(this, R.string.error_no_symbol, Toast.LENGTH_LONG).show();
+
+            addedSymbol = null;
+        }
         if (data.getCount() != 0) {
             error.setVisibility(View.GONE);
         }
