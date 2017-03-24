@@ -12,7 +12,8 @@
         android:minHeight="?android:attr/listPreferredItemHeight"
         android:paddingLeft="@dimen/abc_list_item_padding_horizontal_material"
         android:paddingRight="@dimen/abc_list_item_padding_horizontal_material"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:ignore="PrivateResource">
 
 
         <TextView
