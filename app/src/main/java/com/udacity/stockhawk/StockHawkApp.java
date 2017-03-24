@@ -12,8 +12,6 @@ public class StockHawkApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        //TODO: Make a widget
-
         if (BuildConfig.DEBUG) {
             Timber.uprootAll();
             Timber.plant(new Timber.DebugTree());
