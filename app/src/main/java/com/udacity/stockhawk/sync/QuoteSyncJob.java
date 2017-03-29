@@ -2,6 +2,7 @@ package com.udacity.stockhawk.sync;
 
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
+import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Context;
@@ -11,6 +12,7 @@ import android.net.NetworkInfo;
 
 import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
+import com.udacity.stockhawk.ui.widget.DetailWidgetProvider;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -73,8 +75,12 @@ public final class QuoteSyncJob {
 
 
                 Stock stock = quotes.get(symbol);
-                StockQuote quote = stock.getQuote();
+                if (stock == null) {
+                    PrefUtils.removeStock(context, symbol);
+                    continue;
+                }
 
+                StockQuote quote = stock.getQuote();
                 if (quote.getPrice() == null) {
                     PrefUtils.removeStock(context, symbol);
                     continue;
@@ -113,8 +119,8 @@ public final class QuoteSyncJob {
                         .bulkInsert(
                                 Contract.Quote.URI,
                                 quoteCVs.toArray(new ContentValues[quoteCVs.size()]));
-                updateWidgets(context);
             }
+            refreshWidgets(context);
 
         } catch (IOException exception) {
             Timber.e(exception, "Error fetching stock quotes");
@@ -122,11 +128,23 @@ public final class QuoteSyncJob {
         }
     }
 
-    private static void updateWidgets(Context context) {
+    public static void updateWidgets(Context context) {
         // Setting the package ensures that only components in our app will receive the broadcast
         Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED)
                 .setPackage(context.getPackageName());
         context.sendBroadcast(dataUpdatedIntent);
+    }
+
+    public static void refreshWidgets(Context context) {
+        Intent intent = new Intent(context, DetailWidgetProvider.class);
+        intent.setAction(ACTION_DATA_UPDATED);
+        // Use an array and EXTRA_APPWIDGET_IDS instead of AppWidgetManager.EXTRA_APPWIDGET_ID,
+        // since it seems the onUpdate() is only fired on that:
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(
+                new ComponentName(context, context.getClass()));
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
+        context.sendBroadcast(intent);
     }
 
     private static void schedulePeriodic(Context context) {
